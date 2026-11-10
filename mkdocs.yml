@@ -1,0 +1,26 @@
+site_name: 我的作业&技术笔记
+site_url: https://xiaoxiao1215-huang.github.io/my-notes/
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - search.suggest
+    - search.highlight
+  palette:
+    - scheme: default
+      primary: blue
+      accent: blue
+plugins:
+  - search
+  - awesome-pages   # ✅ 自动扫描docs文件夹生成导航！新增笔记不用手动写nav
+markdown_extensions:
+  - attr_list
+  - md_in_html      # ✅ 关键：markdown里面直接写HTML
+  - tables
+  - pymdownx.highlight
+  - pymdownx.superfences
+extra_css:
+  - assets/css/custom.css
+
