@@ -1,42 +1,31 @@
-name: Deploy MkDocs
-on: push
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
-
-      - name: Install dependencies
-        run: |
-          pip install mkdocs mkdocs-material
-
-      - name: Build
-        run: mkdocs build
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./site
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    permissions:
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
-
+site_name: 我的作业&技术笔记
+site_url: https://你的用户名.github.io/my-notes/ # 后面改
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - search.suggest
+    - search.highlight
+  palette:
+    - scheme: default
+      primary: blue
+      accent: blue
+plugins:
+  - search: # 自带搜索
+markdown_extensions:
+  - attr_list
+  - md_in_html # 【关键】支持markdown里面直接写HTML
+  - tables
+  - pymdownx.highlight
+  - pymdownx.superfences
+nav:
+  - 首页: index.md
+  - Python笔记:
+      - Python基础: python/python基础.md
+  - MySQL笔记:
+      - MySQL查询: mysql/mysql查询.md
+  - Docker笔记:
+      - Docker安装: docker/docker安装.md
 
